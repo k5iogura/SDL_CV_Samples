@@ -24,7 +24,7 @@ If you need GTK+ on ARM, use SDL instead of GTK+, it's easy to implement.
 4. gcc and g++ for x86 or arm-linux-gnueabihf-gcc and arm-linux-gnueabihf-g++ for ARM
 
 *make samples*  
-set paths for pkg-config and LD_LIBRARY_PATH in each Makefiles.  
-make
+1. set paths for pkg-config and LD_LIBRARY_PATH in each Makefiles.  
+2. make
 
 by.  
