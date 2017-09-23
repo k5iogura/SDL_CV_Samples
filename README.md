@@ -2,8 +2,8 @@
 
 Samples using SDL instead of OpenCV GTK+ for darknet witout GTK+.
   
-Why this post  
-*We try implimentation of Darknet DNN Framework on SoC-FPGA(Altera)*  
+*Why this post*  
+We try implimentation of Darknet DNN Framework on SoC-FPGA(Altera)  
 Darknet is pure C lang.  
 So, very easy to implement on ARM.  
 When build Darknet with OpenCV, we had problems for OpenCV-GTK+.  
