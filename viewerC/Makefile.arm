@@ -1,0 +1,33 @@
+PKGPATH = /home/kenji/libs/opencv-3.2_armhf_NEON_VFPV3_medium+ffmpeg/release/installed/lib/pkgconfig:/home/kenji/libs/SDL2_armhf/lib/pkgconfig:/home/kenji/libs/ffmpeg_armhf/lib/pkgconfig
+LD_LIBRARY_PATH = /home/kenji/libs/opencv-3.2_armhf_NEON_VFPV3_medium+ffmpeg/release/installed/lib:/home/kenji/libs/SDL2_armhf/lib:/home/kenji/libs/ffmpeg_armhf/lib/
+
+CVL = $(shell PKG_CONFIG_PATH=$(PKGPATH) pkg-config --libs   opencv)
+CVC = $(shell PKG_CONFIG_PATH=$(PKGPATH) pkg-config --cflags opencv)
+SDL = $(shell PKG_CONFIG_PATH=$(PKGPATH) pkg-config --libs   sdl2)
+SDC = $(shell PKG_CONFIG_PATH=$(PKGPATH) pkg-config --cflags sdl2)
+FFL = $(shell PKG_CONFIG_PATH=$(PKGPATH) pkg-config --libs   libswresample)
+FFC = $(shell PKG_CONFIG_PATH=$(PKGPATH) pkg-config --cflags libswresample)
+FFL+= $(shell PKG_CONFIG_PATH=$(PKGPATH) pkg-config --libs   libavutil)
+FFC+= $(shell PKG_CONFIG_PATH=$(PKGPATH) pkg-config --cflags libavutil)
+DRK = -I/home/kenji/win_shared/darknet_sdl/darknet_arm/include
+DLB = -L/home/kenji/win_shared/Darknet/darknet_armhf/ -ldarknet
+TGT = uvccameraC_arm
+CC  = arm-linux-gnueabihf-gcc
+CXX = arm-linux-gnueabihf-g++
+
+$(TGT): main.o sdl_image.o
+	@echo "CVC=" $(CVC)
+	@echo "CVL=" $(CVL)
+	@echo "SDC=" $(SDC)
+	@echo "SDL=" $(SDL)
+	$(CXX) $^ $(DLB) -o $@ $(FFL) $(SDL) $(CVL) $(FFL)
+
+sdl_image.o:sdl_image.c
+	$(CC) -c -fPIC -Wno-format-security $(C11) $< -o $@ $(SDC) $(CVC) $(DRK)
+
+main.o:main.c
+	$(CC) -c -fPIC $(C11) $< -o $@ $(SDC) $(CVC) $(DRK)
+
+clean:
+	rm -f *.o
+	rm -f $(TGT)
