@@ -27,5 +27,11 @@ If you need GTK+ on ARM, use SDL instead of GTK+, it's easy to implement.
 1. set paths for pkg-config and LD_LIBRARY_PATH in each Makefiles.  
 2. make
 
+*pure opencv sample*  
+Without C++ bindings, only C lang version is in CVOnly directory.  
+1. cd CVOnly  
+2. make  
+3. ./cvsample  
+
 [SDL From here](https://libsdl.org/download-2.0.php)
 by.  
