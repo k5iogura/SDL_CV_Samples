@@ -5,23 +5,15 @@
 #include <pthread.h>
  
 
-/*const char logo[][128]={
-"#     #    #      #    ",
-" #   #    ##     ##    ",
-"  # #    # #    # #    ",
-"   #       #      #    ",
-"  # #      #      #    ",
-" #   #     #      #    ",
-"#     #  #####  #####  "
-};*/
-
 const char logo[][128]={
 "__   __  __   __ ",
 "\\ \\ / / /_ | /_ |",
 " \\ V /   | |  | |",
 "  > <    | |  | |",
 " / . \\   | |  | |",
-"/_/ \\_\\  |_|  |_|"
+"/_/ \\_\\  |_|  |_|",
+"                   ",
+"Hitachi ULSI Systems"
 };
                
                
@@ -64,7 +56,7 @@ int main(int argc, char **argv) {
    while (1) {
       XNextEvent(d, &e);
       if (e.type == Expose) {
-         for(i=0;i<6;i++){
+         for(i=0;i<8;i++){
             XDrawString(d,w, DefaultGC(d,s), 5, i*10+20 , logo[i], strlen(logo[i]));
          }
       }
